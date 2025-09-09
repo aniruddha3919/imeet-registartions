@@ -12,6 +12,7 @@
     <div class="container">
         <header>
             <h1>Event Registration Dashboard</h1>
+            <p>Select an event to view participant registrations</p>
         </header>
 
         <div class="controls">
@@ -31,21 +32,23 @@
             </select>
         </div>
 
+        <!-- Loading State -->
         <div id="loading" class="loading hidden">
             <div class="loader"></div>
             <p>Loading event data...</p>
         </div>
 
+        <!-- Event Details Container -->
         <div id="eventDetails" class="event-details hidden">
             <div class="event-info">
-                <h2 id="eventName"></h2>
+                <h2 id="eventName">Event Name</h2>
                 <div class="event-meta">
-                    <span id="eventDate"></span>
-                    <span id="eventTime"></span>
-                    <span id="eventVenue"></span>
-                    <span id="totalParticipants" class="participant-count"></span>
+                    <span id="eventDate">📅 Date</span>
+                    <span id="eventTime">🕒 Time</span>
+                    <span id="eventVenue">📍 Venue</span>
+                    <span id="totalParticipants" class="participant-count">👥 0 Participants</span>
                 </div>
-                <p id="eventDescription"></p>
+                <p id="eventDescription">Event description will appear here...</p>
             </div>
 
             <div class="search-bar">
@@ -71,18 +74,40 @@
                             </tr>
                         </thead>
                         <tbody id="participantsBody">
+                            <!-- Participant rows will be inserted here by JavaScript -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
 
+        <!-- No Data State -->
         <div id="noData" class="no-data hidden">
-            <p>Please select an event to view registrations.</p>
+            <div class="no-data-content">
+                <h3>🎯 Welcome to Event Registration Dashboard</h3>
+                <p>Please select an event from the dropdown above to view participant registrations.</p>
+                <div class="features">
+                    <ul>
+                        <li>✅ View event details and participant lists</li>
+                        <li>🔍 Search participants by name, department, or roll number</li>
+                        <li>📊 Real-time participant count</li>
+                        <li>📱 Mobile-friendly responsive design</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
+        <!-- Error State -->
         <div id="errorMessage" class="error-message hidden">
-            <p>Error loading event data. Please try again.</p>
+            <div class="error-content">
+                <h3>⚠️ Error Loading Data</h3>
+                <p id="errorText">Error loading event data. Please try again.</p>
+                <div class="error-actions">
+                    <button onclick="location.reload()" class="retry-btn">🔄 Retry</button>
+                    <button onclick="hideAllContainers(); document.getElementById('noData').classList.remove('hidden');"
+                        class="back-btn">← Go Back</button>
+                </div>
+            </div>
         </div>
     </div>
 

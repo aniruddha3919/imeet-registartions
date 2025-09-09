@@ -33,6 +33,13 @@ header h1 {
     margin-bottom: 10px;
 }
 
+header p {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
 .controls {
     padding: 30px;
     background: #f8f9fa;
@@ -96,6 +103,7 @@ header h1 {
 .participant-count {
     background: #4CAF50 !important;
     font-weight: bold;
+    animation: pulse 2s infinite;
 }
 
 .search-bar {
@@ -149,6 +157,7 @@ td {
     padding: 12px;
     border-bottom: 1px solid #e9ecef;
     transition: background-color 0.2s ease;
+    vertical-align: top;
 }
 
 tr:hover {
@@ -174,8 +183,35 @@ tr:nth-child(even):hover {
     font-size: 1.2rem;
 }
 
-/* Add these new styles to your existing CSS */
+.no-data-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
 
+.no-data-content h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.features {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.features li {
+    padding: 8px 0;
+    font-size: 1.1rem;
+    color: #495057;
+}
+
+/* Loading States */
 .loading {
     padding: 60px;
     text-align: center;
@@ -192,16 +228,18 @@ tr:nth-child(even):hover {
     margin: 0 auto 20px;
 }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+.loading p {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: #6c757d;
 }
 
+.table-container.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Error States */
 .error-message {
     padding: 60px;
     text-align: center;
@@ -217,9 +255,272 @@ tr:nth-child(even):hover {
     margin: 0;
 }
 
-/* Rest of your existing CSS styles remain the same */
+.error-content {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
 
+.error-content h3 {
+    color: #dc3545;
+    margin-bottom: 15px;
+    font-size: 1.6rem;
+}
 
+.error-actions {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.retry-btn,
+.back-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.retry-btn {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+}
+
+.retry-btn:hover {
+    background: linear-gradient(135deg, #218838, #1ea080);
+    transform: translateY(-2px);
+}
+
+.back-btn {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    color: white;
+}
+
+.back-btn:hover {
+    background: linear-gradient(135deg, #5a6268, #383d41);
+    transform: translateY(-2px);
+}
+
+/* Enhanced Team-specific Styles */
+.members-list {
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 12px;
+    background: #f8f9fa;
+    margin-top: 5px;
+}
+
+.member-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #dee2e6;
+    transition: background-color 0.2s ease;
+}
+
+.member-item:last-child {
+    border-bottom: none;
+}
+
+.member-item:hover {
+    background-color: rgba(102, 126, 234, 0.05);
+    border-radius: 6px;
+    padding: 10px 8px;
+}
+
+.member-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.member-header strong {
+    color: #2c3e50;
+    font-size: 0.95rem;
+}
+
+.member-role {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.member-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.member-details small {
+    color: #6c757d;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.member-count-display {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-align: center;
+    display: inline-block;
+    animation: badge-pulse 3s infinite;
+}
+
+/* Legacy member-count for backward compatibility */
+.member-count {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    animation: badge-pulse 3s infinite;
+}
+
+/* Status badges */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+}
+
+.status-complete {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+}
+
+.status-incomplete {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+    color: white;
+}
+
+.status-empty {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    color: white;
+}
+
+.status-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Team row styling */
+tr.team-complete {
+    background-color: rgba(40, 167, 69, 0.05);
+}
+
+tr.team-incomplete {
+    background-color: rgba(255, 193, 7, 0.05);
+}
+
+tr.team-empty {
+    background-color: rgba(108, 117, 125, 0.05);
+    opacity: 0.8;
+}
+
+tr.team-complete:hover,
+tr.team-incomplete:hover,
+tr.team-empty:hover {
+    background-color: rgba(102, 126, 234, 0.1);
+    opacity: 1;
+}
+
+/* Success States */
+.event-info.loaded {
+    animation: slideInFromTop 0.5s ease-out;
+}
+
+/* Animations */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes badge-pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Team statistics summary */
+.team-stats {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-align: center;
+    flex: 1;
+    min-width: 100px;
+}
+
+.stat-number {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         margin: 10px;
@@ -255,5 +556,127 @@ tr:nth-child(even):hover {
 
     .table-container {
         font-size: 12px;
+    }
+
+    .members-list {
+        max-height: 150px;
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .member-item {
+        padding: 8px 0;
+    }
+
+    .member-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .member-details small {
+        font-size: 0.75rem;
+    }
+
+    .member-count-display {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+
+    .status-badge {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .retry-btn,
+    .back-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .features {
+        text-align: center;
+    }
+
+    .features li {
+        font-size: 1rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .container {
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .controls,
+    .search-bar,
+    .error-actions {
+        display: none;
+    }
+
+    .members-list {
+        max-height: none;
+        overflow: visible;
+    }
+
+    .status-badge {
+        border: 1px solid #000;
+        background: white !important;
+        color: black !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .status-badge {
+        border: 2px solid;
+    }
+
+    .member-role {
+        border: 1px solid white;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .participant-count,
+    .member-count,
+    .member-count-display,
+    .event-info.loaded {
+        animation: none;
+    }
+
+    .retry-btn:hover,
+    .back-btn:hover,
+    .status-badge:hover {
+        transform: none;
+    }
+}
+
+/* Dark mode support (for future enhancement) */
+@media (prefers-color-scheme: dark) {
+    .members-list {
+        background: #2c2c2c;
+        border-color: #555;
+    }
+
+    .member-item {
+        border-color: #555;
+    }
+
+    .member-item:hover {
+        background-color: rgba(102, 126, 234, 0.2);
     }
 }
